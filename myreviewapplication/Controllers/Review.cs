@@ -15,7 +15,7 @@ namespace myreviewapplication.Controllers
 
         [HttpPost]
         public IActionResult PostReview(Product prod)
-        {
+        {   
             Guid guid = Guid.NewGuid(); 
            Console.WriteLine(Productdata.myproddict[prod.Id]);
             Comment comment = new Comment {
@@ -28,6 +28,7 @@ namespace myreviewapplication.Controllers
          
 
        _dbContext.Comments.Add(comment);
+            Console.WriteLine(comment);
             _dbContext.SaveChanges();
       
   
