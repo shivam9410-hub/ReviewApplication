@@ -7,17 +7,19 @@ namespace myreviewapplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly MyDbContext _dbcontext;
+        public HomeController(ILogger<HomeController> logger, MyDbContext _dbcontext)
         {
             _logger = logger;
+            this._dbcontext = _dbcontext;
         }
 
         public IActionResult Index()
         { 
-              List<Product> products=ProductData.Productdata.myproducts;
+               List<Product>Products = _dbcontext.Products.ToList();    
 
-            return View(products);
+
+            return View(Products);
         }
 
         public IActionResult Privacy()

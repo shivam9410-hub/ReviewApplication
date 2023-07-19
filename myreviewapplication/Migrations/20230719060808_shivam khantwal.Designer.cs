@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myreviewapplication;
 
@@ -11,9 +12,11 @@ using myreviewapplication;
 namespace myreviewapplication.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719060808_shivam khantwal")]
+    partial class shivamkhantwal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,10 +67,7 @@ namespace myreviewapplication.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Score")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("review")

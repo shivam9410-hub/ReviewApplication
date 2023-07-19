@@ -7,10 +7,14 @@
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }    
-         public  int Price { get; set; } 
-        public string review { get;set ; }
+         public  int Price { get; set; }
+        public  double Rating { get;set; }
+
+        public int Score { get; set; } = 0;
+        public string review { get; set; } = " ";
+
         
-        public ICollection<Comment>Comments { get; set; }   
+       
 
 
     }

@@ -5,19 +5,61 @@
 }
 @model myreviewapplication.Models.Product ; 
 
+
+<style>
+ .productdetail{
+ width:100% ; 
+ height:100vh ; 
+ box-sizing:border-box ; 
+ display :flex; 
+ justify-content:center; 
+ align-items:center;
+
+ }
+ .productdetailcard{
+     display:flex;
+     flex-direction:row; 
+     justify-content:space-around;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        
+  
+        padding:10px;
+ 
+ } 
+
+ .details{
+      display:flex;
+      flex-direction:column; 
+
+ }
+ .reviews{
+      margin:5px; 
+ }
+</style>
 <div class="productdetail">
+<div class="productdetailcard">
 
     <div class="image">
         <img src="@Model.ImageUrl" />
     </div>
     <div class="details">
        <h1>@Model.Name</h1>
-    </div>
+            <h3>&#8377; @Model.Price</h3>
+      <p>@Model.Description</p>
+   
 
     <form method="post" asp-action="PostReview" asp-route-id="@Model.Id" asp-controller="Review">
-       <textarea  asp-for="review">
+       <textarea  class="form-control m-5" asp-for="review">
 
        </textarea>
-     <input type="submit"/>
+     <input type="submit" class="btn btn-success" value="Post Review" />
     </form>
+
+    <div class="reviews">
+
+        <a class="btn btn-secondary" asp-route-id="@Model.Id" asp-action="GetReviews" , asp-controller="Review">Read Reviews</a>
+
+            </div>
+    </div>
+</div>
 </div>
