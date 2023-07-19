@@ -45,11 +45,13 @@
     <div class="details">
        <h1>@Model.Name</h1>
             <h3>&#8377; @Model.Price</h3>
+            
+            <h5>@Model.Rating *  </h5>
       <p>@Model.Description</p>
    
 
     <form method="post" asp-action="PostReview" asp-route-id="@Model.Id" asp-controller="Review">
-       <textarea  class="form-control m-5" asp-for="review">
+       <textarea  class="form-control mb-2" asp-for="review" !important>
 
        </textarea>
      <input type="submit" class="btn btn-success" value="Post Review" />

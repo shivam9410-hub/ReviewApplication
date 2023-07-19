@@ -73,12 +73,12 @@ namespace myreviewapplication.Controllers
                     maximumrating = ReviewDataRating.rating[reviewword];
                 }
             }
- if (found == 1)
+                 if (found == 1)
             {
                 var totalcommentscount = _dbContext.Comments.Count(c => c.ProductId == prod.Id);
                 totalcommentscount++;
                 product.Score += maximumrating;
-                product.Rating = (double)(product.Score) / totalcommentscount;
+                product.Rating = (double)(product.Score / totalcommentscount);
                 _dbContext.SaveChanges();
             }
 
