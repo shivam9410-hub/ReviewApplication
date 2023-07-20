@@ -18,42 +18,65 @@
  }
  .productdetailcard{
      display:flex;
+        position: relative;
+      
+     width:100% ; 
+     height:100% ;
+   
      flex-direction:row; 
      justify-content:space-around;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        
-  
+     align-items:center ;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ 
         padding:10px;
  
  } 
-
+ 
  .details{
       display:flex;
+        border-radius: 40px;
+      padding:15px;
       flex-direction:column; 
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        width:700px; 
+        justify-content:center;
+      
+        height:700px;
 
  }
+ .image{
+      width:600px;
+        border-radius: 40px;
+      height:600px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+ }
+ .image img{
+            width: 100%;
+            border-radius: 40px;
+     height:100%;
+      object-fit:cover;
+ }
+ 
  .reviews{
-      margin:5px; 
+      margin-top:10px; 
  }
 </style>
 <div class="productdetail">
 <div class="productdetailcard">
-
+ 
     <div class="image">
         <img src="@Model.ImageUrl" />
     </div>
     <div class="details">
-       <h1>@Model.Name</h1>
-            <h3>&#8377; @Model.Price</h3>
+       <h1>Name:@Model.Name</h1>
+            <h3>Price: &#8377; @Model.Price</h3>
             
-            <h5>@Model.Rating *  </h5>
+            <h5>Rating: @Model.Rating*  </h5>
       <p>@Model.Description</p>
    
 
     <form method="post" asp-action="PostReview" asp-route-id="@Model.Id" asp-controller="Review">
-       <textarea  class="form-control mb-2" asp-for="review" !important>
-
-       </textarea>
+       <textarea  class="form-control mb-2" asp-for="review" required ></textarea>
      <input type="submit" class="btn btn-success" value="Post Review" />
     </form>
 

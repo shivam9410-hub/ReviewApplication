@@ -15,38 +15,67 @@
         }
         .cardscontainer{
          display:flex;
-         height:100vh;
+         height: auto;
          
           justify-content:space-around ;
           flex-wrap:wrap ;
         
         }
-        .mycard{
-        
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
+
+    .page2 {
+        display: flex;
+        justify-content:space-around;
+        align-items:center;
+        height:100vh;
+        flex-direction: column;
+    }
+
+   
+    .mycard{
         width:400px; 
-        height:550px;
-        padding: 10px;
-        box-sizing:border-box ; 
-        display:flex;
-        flex-direction:column; 
-        justify-content:center; 
-         align-items:center ;
-        
-        
-        }
+        height:400px; 
+        border-radius:20px;
+        border:1px solid grey;
+        margin:10px;
 
-        .cardimg{
-            width:100% ;
-            height:50% ;
-        }
-        .page2{
-            display:flex;
-            flex-direction:column;
-      
+    position:relative;
+    }
+    .cardimg{
+        position:absolute;
+        top:0 ;
+        bottom:0;
+        left:0;
+        right:0;
+        position:relative;
+        z-index:auto;
+    }
+    .cardimg img{
+          width:100% ; 
+          height:100% ; 
+          object-fit:contain ; 
+    }
+    .details{
+         width:100% ; 
+         height:100% ;
+         position:absolute ;
+         top:0 ;
+         right: 0 ;
+         bottom :0 ; 
+         left:0 ; 
+         display:flex; 
+    background:gray;
+         justify-content:center;
+         text-align:center;
+         display:none;
+         transition:1s ease-in-out;
+       
+         
+    }
+    .cardimg:hover + .details{
+        display :block;
 
-
-        }
+    } 
     </style>
 
 <div class="firstpage">
@@ -75,16 +104,20 @@
         @foreach (var item in Model)
         {
             <div class="mycard">
+
                 <div class="cardimg">
                     <img src="@item.ImageUrl" class="img-fluid" />
                 </div>
                 <div class="details">
-                    <h4>@item.Name</h4>
-                    <h5>@item.Price</h5>
-                    <p> Rating: @item.Rating * </p>
+                   <div>
+                        <h4>Name: @item.Name</h4>
+                        <h5>Price: @item.Price</h5>
+                        <p> Rating: @item.Rating* </p>
+                        <a class="btn btn-primary" asp-action="ProductDetail" asp-controller="ProductDetails" asp-route-id="@item.Id">Review</a>
 
+                   </div>
                 </div>
-                <a class="btn btn-primary" asp-action="ProductDetail" asp-controller="ProductDetails" asp-route-id="@item.Id">Review</a>
+               
             </div>
         }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using myreviewapplication.Models;
+using myreviewapplication.Models.ViewModel;
 using myreviewapplication.ProductData;
 
 
@@ -18,8 +19,20 @@ namespace myreviewapplication.Controllers
         {
       
             List<Comment> comments=_dbContext.Comments.Where(c=>c.ProductId == Id).ToList();
-               
-            return View(comments); 
+
+
+            var query = (from c in _dbContext.Comments
+                         join p in _dbContext.Products on c.ProductId equals p.Id
+                         join u in _dbContext.Users on c.UserId equals u.Id
+                         where p.Id == Id
+                         select new review
+                         {
+                             CommentText = c.CommentText,
+                              UserName = u.Name,
+                              CommentId= c.CommentId
+                         }).ToList();
+
+            return View(query); 
         }
 
         [HttpPost]
@@ -42,6 +55,7 @@ namespace myreviewapplication.Controllers
                 CommentText = prod.review,
                 ProductId = prod.Id,
                 UserId =  newuser.Id
+               
             }; 
             
 

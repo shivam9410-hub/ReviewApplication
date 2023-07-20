@@ -3,14 +3,37 @@
 *@
 @{
 }
-@model List<myreviewapplication.Models.Comment>
+<style>
+.carditem{
+       
+        font-size:20px;
+        position:relative ;
+        background:skyblue;
+        height:70px;
+        margin:10px;
+     
+}
+ .card.name{
+ position:absolute; 
+ top:50%;
+ bottom:0;
+ right:0;
+ }
+
+   
+</style>
+@model List<myreviewapplication.Models.ViewModel.review>
 <div class="container-fluid">
      <h1>Here are all customer reviews for the clicked product</h1>
     <div class="card">
           
         @foreach(var review in Model)
         {
-              <h1>@review.CommentText </h1>
+            <div class="carditem">
+                <p class="comment">@review.CommentText </p>
+                <p class="name">By:@review.UserName</p>
+
+            </div>
         }
     </div>
 </div>

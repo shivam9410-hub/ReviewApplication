@@ -8,10 +8,10 @@
 <div class="container-fluid">
 
     <form method="post" asp-action="AddProduct" asp-controller="ProductDetails">
-        <input placeholder="Name" asp-for="Name"/>
-        <input placeholder="Description" asp-for="Description"/>
-        <input placeholder="ImageUrl" asp-for="ImageUrl"/>
-        <input placeholder="Price" asp-for="Price"/>
+        <input placeholder="Name" asp-for="Name" required/>
+        <input placeholder="Description" asp-for="Description" required/>
+        <input placeholder="ImageUrl" asp-for="ImageUrl" required/>
+        <input placeholder="Price" asp-for="Price" required/>
        <input type="submit"/>
     </form>
 
