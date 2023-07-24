@@ -32,7 +32,7 @@ namespace myreviewapplication.Controllers
                               CommentId= c.CommentId
                          }).ToList();
 
-            return View(query); 
+            return  PartialView("_ReviewPartial", query); 
         }
 
         [HttpPost]
@@ -96,11 +96,11 @@ namespace myreviewapplication.Controllers
                 _dbContext.SaveChanges();
             }
 
-         
 
 
 
-            return Redirect("/");
+
+            return Redirect( "/");
         }
     }
 }

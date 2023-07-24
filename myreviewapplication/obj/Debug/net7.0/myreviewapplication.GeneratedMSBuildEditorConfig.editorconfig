@@ -32,8 +32,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdERldGFpbHNcUHJvZHVjdERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Shivam Kumar/myreviewapplication/myreviewapplication/Views/Review/GetReviews.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XEdldFJldmlld3MuY3NodG1s
+[C:/Users/Shivam Kumar/myreviewapplication/myreviewapplication/Views/Review/_partasdfsd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XF9wYXJ0YXNkZnNkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Shivam Kumar/myreviewapplication/myreviewapplication/Views/Review/_ReviewPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV2aWV3XF9SZXZpZXdQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Shivam Kumar/myreviewapplication/myreviewapplication/Views/Shared/Error.cshtml]

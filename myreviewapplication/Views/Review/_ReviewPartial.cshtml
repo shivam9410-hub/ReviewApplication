@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model  List<myreviewapplication.Models.ViewModel.review>
+
+    <style>
+.comment{
+  
+      height:100px ;
+      margin:10px; 
+      padding:10px;
+      width:100%;
+   border-radius:15px;
+  
+ 
+ 
+}
+.Reviews{
+ display:flex; 
+ flex-direction:column;
+ align-items:start;
+ width:100% ; 
+
+ height:auto;
+
+
+}
+</style>
+<div class="Reviews">
+    <h1>Reviews By Our Customers &#128104;</h1>
+    @{
+        int i = 1;
+        foreach (var review in Model)
+        {
+                 <div class="comment">
+
+                <div> @i : CustomerName: @review.UserName</div>
+                <div>Review: @review.CommentText </div>
+            </div>
+            i++;
+        }
+    }
+    
+</div>
