@@ -75,7 +75,8 @@ namespace myreviewapplication.Controllers
             
             int maximumrating = 0;
             
-            int  found = 0;
+            int  wordfound = 0;
+            int NotFound = 0;
             
             foreach(var reviewword in wordlist) {
             
@@ -83,15 +84,24 @@ namespace myreviewapplication.Controllers
                 
                 if ( isWordPresent &&  maximumrating< ReviewDataRating.rating[reviewword])
                 {
-                    found = 1;
+                    wordfound = 1;
                     maximumrating = ReviewDataRating.rating[reviewword];
                 }
+                if (reviewword == "not")
+                {
+                    NotFound = 1; 
+                }
             }
-                 if (found == 1)
+                 if (wordfound == 1)
             {
                 var totalcommentscount = _dbContext.Comments.Count(c => c.ProductId == prod.Id);
                 totalcommentscount++;
                 product.Score += maximumrating;
+                if (NotFound==1)
+                {
+                    product.Score -= 1;
+
+                }
                 product.Rating = (double)(product.Score / totalcommentscount);
                 _dbContext.SaveChanges();
             }
