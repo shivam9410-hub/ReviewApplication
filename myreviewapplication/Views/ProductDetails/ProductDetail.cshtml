@@ -114,7 +114,7 @@
         $("#reviewcontainer").hide();
              $("#reviewtext").submit( function(event){
            
-                 
+             
             const reviewofcustomer =$('#customerreview').val(); 
             
 
@@ -145,7 +145,7 @@
                }
 
               $.post("/Review/PostReview/",model,function(response){
-                   console.log(response )
+                 alert("Your review submitted successfully")
               })
 
                 }
@@ -165,7 +165,7 @@
             }
         })
 
-      let hide= false ;
+      let hide= true ;
       
                $("#hidereviewbutton").click(function(){
 
