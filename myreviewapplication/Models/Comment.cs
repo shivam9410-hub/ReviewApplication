@@ -6,7 +6,7 @@ namespace myreviewapplication.Models
     {
         public Guid CommentId { get; set; }
         public string CommentText { get; set; }
-    
+            public  int rating { get; set; }        
         public Guid UserId { get; set; }
     
          

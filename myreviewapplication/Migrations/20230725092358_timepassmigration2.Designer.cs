@@ -12,8 +12,8 @@ using myreviewapplication;
 namespace myreviewapplication.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230718112830_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20230725092358_timepassmigration2")]
+    partial class timepassmigration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,11 +41,10 @@ namespace myreviewapplication.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("rating")
+                        .HasColumnType("int");
+
                     b.HasKey("CommentId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -71,6 +70,12 @@ namespace myreviewapplication.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
                     b.Property<string>("review")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -94,38 +99,12 @@ namespace myreviewapplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Password")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("myreviewapplication.Models.Comment", b =>
-                {
-                    b.HasOne("myreviewapplication.Models.Product", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("myreviewapplication.Models.User", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("myreviewapplication.Models.Product", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("myreviewapplication.Models.User", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

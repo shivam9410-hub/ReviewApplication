@@ -5,7 +5,7 @@
 namespace myreviewapplication.Migrations
 {
     /// <inheritdoc />
-    public partial class mynew12 : Migration
+    public partial class timepassmigration2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

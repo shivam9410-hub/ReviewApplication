@@ -29,16 +29,17 @@ namespace myreviewapplication.Controllers
                          {
                              CommentText = c.CommentText,
                               UserName = u.Name,
-                              CommentId= c.CommentId
+                              CommentId= c.CommentId,
+                              rating= c.rating
                          }).ToList();
-
+              
             return  PartialView("_ReviewPartial", query); 
         }
 
         [HttpPost]
         public IActionResult PostReview(Product prod)
-        {   
-           
+        {
+            Console.WriteLine(prod);
           
             User newuser = new User(); 
             newuser.Id = Guid.NewGuid();
@@ -48,22 +49,6 @@ namespace myreviewapplication.Controllers
             newuser.Password = 123214;
             _dbContext.Users.Add(newuser);
             _dbContext.SaveChanges();
-
-
-
-        Comment comment = new Comment {
-                CommentText = prod.review,
-                ProductId = prod.Id,
-                UserId =  newuser.Id
-               
-            }; 
-            
-
-        
-
-       _dbContext.Comments.Add(comment);
-         
-
             var product = _dbContext.Products.FirstOrDefault(p => p.Id == prod.Id);
 
 
@@ -103,6 +88,21 @@ namespace myreviewapplication.Controllers
 
                 }
                 product.Rating = (double)(product.Score / totalcommentscount);
+                Comment comment = new Comment
+                {
+                    CommentText = prod.review,
+                    ProductId = prod.Id,
+                    UserId = newuser.Id,
+
+                     rating =  maximumrating
+
+                };
+
+
+
+
+                _dbContext.Comments.Add(comment);
+          
                 _dbContext.SaveChanges();
             }
 
@@ -110,7 +110,7 @@ namespace myreviewapplication.Controllers
 
 
 
-            return Redirect( "/");
+            return  Ok("Successfuly submitted");
         }
     }
 }

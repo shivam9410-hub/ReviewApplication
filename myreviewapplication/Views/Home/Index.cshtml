@@ -61,6 +61,11 @@
         object-fit:cover;
         
    }
+   .cardcontainer:hover{
+        width:103% ; 
+        height:103%;
+        background:yellow;
+   }
 
  .description{
  }
@@ -118,8 +123,8 @@
     <div class="description">
 
         <h1>
-            Slice of Heaven: Crafted Pizzas <br /> for Every Craving"
-            <a class="btn btn-primary" asp-action="AddProduct" asp-controller="ProductDetails">Add New</a>
+      "Slice of Heaven: Crafted Pizzas <br /> for Every Craving"
+         <a class="btn btn-primary" asp-action="AddProduct" asp-controller="ProductDetails">Add New</a> 
         </h1>
     </div>
    
@@ -148,7 +153,7 @@
                         <h4>Name: @item.Name</h4>
                         <h5>Price: &#8377; @item.Price</h5>
                         <p> Rating: @item.Rating <span style="font-size:150%;color:yellow;">&starf;</span> </p>
-                        <a class="btn btn-primary" asp-action="ProductDetail" asp-controller="ProductDetails" asp-route-id="@item.Id">Review</a>
+                        <a class="btn btn-primary" asp-action="ProductDetail" asp-controller="ProductDetails" asp-route-id="@item.Id">Check Out</a>
 
                    </div>
                 </div>

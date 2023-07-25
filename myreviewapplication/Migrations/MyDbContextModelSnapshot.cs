@@ -38,6 +38,9 @@ namespace myreviewapplication.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("rating")
+                        .HasColumnType("int");
+
                     b.HasKey("CommentId");
 
                     b.ToTable("Comments");

@@ -81,22 +81,22 @@
         <img src="@Model.ImageUrl" />
     </div>
     <div class="details">
-       <h1>Name:@Model.Name</h1>
+            <h1>Name:@Model.Name </h1> 
             <h3>Price: &#8377; @Model.Price</h3>
             
             <h5>Rating: @Model.Rating <span style="font-size:150%;color:yellow;">&starf;</span> </h5>
       <p>@Model.Description</p>
    
 
-    <form  id="reviewtext" method="post" asp-action="PostReview" asp-route-id="@Model.Id" asp-controller="Review">
-       <textarea  class="form-control mb-2" asp-for="review" required ></textarea>
+    <form  id="reviewtext" method="post" >
+       <textarea  id="customerreview" class="form-control mb-2"  required ></textarea>
      <input type="submit" class="btn btn-success" value="Post Review" />
     </form>
 
     <div class="reviews">
 
-        <a  id="loadreviewsbutton" class="btn btn-secondary" >Read Reviews</a>
-        <a id="hidereviewbutton" class="btn btn-primary">Hide Reviews</a>
+        <a  id="loadreviewsbutton" class="btn btn-secondary" >Show Reviews</a>
+      
 
             </div>
     </div>
@@ -112,6 +112,60 @@
 
          $(document).ready(function(){
         $("#reviewcontainer").hide();
+             $("#reviewtext").submit( function(event){
+           
+                 
+            const reviewofcustomer =$('#customerreview').val(); 
+            
+
+            let  charcount =0 ; 
+             for(let i =0 ; i<reviewofcustomer.length ;i++){
+                  if(reviewofcustomer[i]!=' ')
+                  charcount++ ;
+             }
+         
+
+            if(charcount===0)
+          alert("Enter the review before submitting") 
+         
+
+          else { 
+
+
+
+                let model = {
+                    Id: '@Model.Id',
+                    Name: '@Model.Name' ,
+                    Description: '@Model.Description' ,
+                    ImageUrl: '@Model.ImageUrl',
+                    Price: '@Model.Price' ,
+                    Rating: '@Model.Rating' ,
+                    Score: '@Model.Score' ,
+                    review:  reviewofcustomer
+               }
+
+              $.post("/Review/PostReview/",model,function(response){
+                   console.log(response )
+              })
+
+                }
+            })
+
+
+        
+        $.ajax({
+            url: "@Url.Action("GetReviews", "Review",  new {Id=Model.Id})",
+            type: "GET",
+            success: function (result) {
+                $("#reviewcontainer").html(result);
+                
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+
+      let hide= false ;
       
                $("#hidereviewbutton").click(function(){
 
@@ -120,17 +174,22 @@
                })
               $("#loadreviewsbutton").click(function(){
               
-            $("#reviewcontainer").show();
-            $.ajax({
-                url: "@Url.Action("GetReviews", "Review",  new {Id=Model.Id})",
-                type: "GET",
-                success: function (result) {
-                    $("#reviewcontainer").html(result);
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            })
+         
+          
+
+              if(hide==false){
+
+                $("#loadreviewsbutton").text('Show Reviews');
+                $("#reviewcontainer").hide();
+                  hide=true;
+              }
+              else {
+                $("#loadreviewsbutton").text('Hide Reviews');
+                $("#reviewcontainer").show();
+
+                hide=false
+              }
+          
               })
 
 

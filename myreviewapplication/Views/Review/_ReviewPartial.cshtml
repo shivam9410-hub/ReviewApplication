@@ -28,6 +28,12 @@
 
 
 }
+.wholecomment{
+     display:flex; 
+     justify-content:space-between ; 
+     align-items:center;
+    
+}
 </style>
 <div class="Reviews">
     <h1>Reviews By Our Customers &#128104;</h1>
@@ -35,11 +41,15 @@
         int i = 1;
         foreach (var review in Model)
         {
-                 <div class="comment">
+                <div class="wholecomment">
+                <div >@i.</div>
+                <div class="comment">
 
-                <div> @i : CustomerName: @review.UserName</div>
-                <div>Review: @review.CommentText </div>
-            </div>
+                    <div>  CustomerName: @review.UserName</div>
+                    <div>Review: @review.CommentText </div>
+                    <div>Rating:@review.rating <span style="font-size:150%;color:yellow;">&starf;</span></div>
+                </div>
+                </div>
             i++;
         }
     }
