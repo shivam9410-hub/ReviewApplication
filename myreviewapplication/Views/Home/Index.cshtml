@@ -52,20 +52,25 @@
        width:100%;
         height: 50%;
         overflow: hidden;
-        
+ 
+   
    }
+ 
    .cardimg img{
         max-height:100% ; 
-       width:100% ; 
+        width:100% ; 
    
         object-fit:cover;
-        
+            transition: 0.2s ease-in-out;
    }
-   .cardcontainer:hover{
-        width:103% ; 
-        height:103%;
-        background:yellow;
-   }
+     
+    .image:hover {
+         max-height:105% ; 
+         width:105% ;
+
+
+    }
+  
 
  .description{
  }
@@ -118,7 +123,7 @@
 
 <div class="firstpage">
    <div class="image">
-        <img src="https://c4.wallpaperflare.com/wallpaper/234/543/684/food-pizza-wallpaper-preview.jpg" />
+        <img   src="https://c4.wallpaperflare.com/wallpaper/234/543/684/food-pizza-wallpaper-preview.jpg" />
    </div>
     <div class="description">
 
@@ -146,7 +151,7 @@
             <div class="mycard">
 
                 <div class="cardimg">
-                    <img src="@item.ImageUrl" class="img-fluid" />
+                    <img class="image" src="@item.ImageUrl" class="img-fluid" />
                 </div>
                 <div class="details">
                    <div>

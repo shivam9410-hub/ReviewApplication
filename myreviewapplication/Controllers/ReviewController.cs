@@ -22,7 +22,7 @@ namespace myreviewapplication.Controllers
 
 
             var query = (from c in _dbContext.Comments
-                         join p in _dbContext.Products son c.ProductId equals p.Id
+                         join p in _dbContext.Products on c.ProductId equals p.Id
                          join u in _dbContext.Users on c.UserId equals u.Id
                          where p.Id == Id
                          select new review
@@ -30,7 +30,8 @@ namespace myreviewapplication.Controllers
                              CommentText = c.CommentText,
                               UserName = u.Name,
                               CommentId= c.CommentId,
-                              rating= c.rating
+                              rating= c.rating , 
+                              
                          }).ToList();
               
             return  PartialView("_ReviewPartial", query); 
@@ -88,6 +89,8 @@ namespace myreviewapplication.Controllers
 
                 }
                 product.Rating = (double)(product.Score / totalcommentscount);
+
+                Console.WriteLine((double)(product.Score / totalcommentscount));
                 Comment comment = new Comment
                 {
                     CommentText = prod.review,
@@ -110,7 +113,7 @@ namespace myreviewapplication.Controllers
 
 
 
-            return Redirect("/");
+            return Ok( "sent successfully") ;
         }
     }
 }

@@ -113,19 +113,15 @@
          $(document).ready(function(){
         $("#reviewcontainer").hide();
              $("#reviewtext").submit( function(event){
-           
-             
+                 event.preventDefault()
+;           
+            
             const reviewofcustomer =$('#customerreview').val(); 
             
+ 
 
-            let  charcount =0 ; 
-             for(let i =0 ; i<reviewofcustomer.length ;i++){
-                  if(reviewofcustomer[i]!=' ')
-                  charcount++ ;
-             }
-         
-
-            if(charcount===0)
+              const tempreview= reviewofcustomer.trim() ;
+            if(tempreview.length===0)
           alert("Enter the review before submitting") 
          
 
@@ -144,8 +140,22 @@
                     review:  reviewofcustomer
                }
 
-              $.post("/Review/PostReview/",model,function(response){
-                 alert("Your review submitted successfully")
+        
+
+              $.ajax({
+                  url:"@Url.Action("PostReview","Review")" , 
+                  type:"POST" , 
+                  data: model, 
+                  success:function(result){
+                     
+                       alert("Review is successfully submitted") ;
+                       
+                  }
+                   ,
+                   error:function(err){
+                        console.log(err) ;
+                   }
+
               })
 
                 }
