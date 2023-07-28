@@ -70,7 +70,7 @@ namespace myreviewapplication.Controllers
                 
                 if ( isWordPresent &&  maximumrating< ReviewDataRating.rating[reviewword])
                 {
-                    wordfound = 1;
+                    wordfound = 1;    /// this is for  if my word is found if found then ok if not found i am not considering that comment; 
                     maximumrating = ReviewDataRating.rating[reviewword];
                 }
                 if (reviewword == "not")
@@ -78,17 +78,18 @@ namespace myreviewapplication.Controllers
                     NotFound = 1; 
                 }
             }
-                 if (wordfound == 1)
-            {
-                var totalcommentscount = _dbContext.Comments.Count(c => c.ProductId == prod.Id);
-                totalcommentscount++;
-                product.Score += maximumrating;
-                if (NotFound==1)
+                 
+            if (wordfound == 1)
                 {
-                    product.Score -= 1;
-
-                }
-                product.Rating = (double)(product.Score / totalcommentscount);
+                 var totalcommentscount = _dbContext.Comments.Count(c => c.ProductId == prod.Id);
+                 totalcommentscount++;
+                 product.Score += maximumrating;
+                 if (NotFound==1)
+                 {
+                    product.Score -= 1;   // this is for if found  not good so i will give rating as the actual rating of good -1;
+                                          //
+                 }
+                product.Rating = (double)((double)product.Score / (double)totalcommentscount);
 
                 Console.WriteLine((double)(product.Score / totalcommentscount));
                 Comment comment = new Comment

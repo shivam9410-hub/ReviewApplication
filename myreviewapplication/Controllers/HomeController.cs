@@ -16,7 +16,7 @@ namespace myreviewapplication.Controllers
 
         public IActionResult Index()
         { 
-               List<Product>Products = _dbcontext.Products.ToList();    
+               List<Product>Products = _dbcontext.Products.OrderByDescending((product)=>product.Rating).ToList();    
 
 
             return View(Products);

@@ -84,7 +84,7 @@
             <h1>Name:@Model.Name </h1> 
             <h3>Price: &#8377; @Model.Price</h3>
             
-            <h5>Rating: @Model.Rating <span style="font-size:150%;color:yellow;">&starf;</span> </h5>
+            <h5>Rating: @Model.Rating <span style="font-size:150%;color:yellow;">&starf;  </span>(@ViewBag.noofreviews reviews) </h5>
       <p>@Model.Description</p>
    
 
@@ -163,17 +163,7 @@
 
 
         
-        $.ajax({
-            url: "@Url.Action("GetReviews", "Review",  new {Id=Model.Id})",
-            type: "GET",
-            success: function (result) {
-                $("#reviewcontainer").html(result);
-                
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
+    
 
       let hide= true ;
       
@@ -194,6 +184,17 @@
                   hide=true;
               }
               else {
+                $.ajax({
+                    url: "@Url.Action("GetReviews", "Review",  new {Id=Model.Id})",
+                    type: "GET",
+                    success: function (result) {
+                        $("#reviewcontainer").html(result);
+
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
                 $("#loadreviewsbutton").text('Hide Reviews');
                 $("#reviewcontainer").show();
 

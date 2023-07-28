@@ -33,7 +33,8 @@ namespace myreviewapplication.Controllers
         {
              
             var product = _dbContext.Products.FirstOrDefault(p => p.Id == Id); 
-
+             var noofreviews = _dbContext.Comments.Count(p=> p.ProductId == Id); ;
+            ViewBag.noofreviews = noofreviews;
             return View(product);
         }
     }
