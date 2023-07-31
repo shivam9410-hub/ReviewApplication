@@ -99,12 +99,18 @@ namespace myreviewapplication.Controllers
                     productrating = maximumrating; 
                     product.Score += productrating;
                 }
-                 if (NotFound==1)
-                 {
-                    product.Score -= 1;   // this is for if found  not good so i will give rating as the actual rating of good -1;
-                                          //
+                 if (NotFound==1 &&  maximumrating==1)
+                 { 
+                    product.Score += 1;
+                    // this is for if found  not good so i will give rating as the actual rating of good -1;
+                    productrating += 1;                      //
                  }
-                product.Rating = (double)((double)product.Score / (double)totalcommentscount);
+                 else if(NotFound==1 && maximumrating!=1)
+                {
+                    product.Score -= 1;
+                    productrating -= 1;
+                }
+                product.Rating = Math.Round((double)((double)product.Score / (double)totalcommentscount),1);
 
 
                 Comment comment = new Comment
